@@ -10,8 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-amplify/geo": "^3.0.70",
     "@aws-amplify/ui-react": "^6.5.5",
+    "@aws-amplify/ui-react-geo": "^2.2.1",
     "aws-amplify": "^6.6.6",
+    "deck.gl": "8.8.20",
+    "maplibre-gl": "^2.4.0",
+    "maplibre-gl-js-amplify": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
