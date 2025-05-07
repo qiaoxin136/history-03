@@ -98,7 +98,7 @@ type DataT = {
 };
 
 const AIR_PORTS =
-  "https://0xwgw1v4qb.execute-api.us-east-2.amazonaws.com/test/getData";
+  "https://5u4m070ki1.execute-api.us-east-1.amazonaws.com/Test/getData";
 
 const MAP_STYLE =
   "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
@@ -128,7 +128,7 @@ function App() {
   const [clickInfo, setClickInfo] = useState<DataT>();
   const [showPopup, setShowPopup] = useState<boolean>(true);
   const [checked, setChecked] = useState<boolean>(false);
- 
+
 
   const layers = [
 
@@ -188,25 +188,25 @@ function App() {
         f.properties.DIAMETER < 11
           ? [0, 163, 108, 255]
           : f.properties.DIAMETER < 17
-          ? [218, 112, 214, 255]
-          : f.properties.DIAMETER < 25
-          ? [93, 63, 211, 255]
-          : f.properties.DIAMETER < 31
-          ? [191, 64, 191, 255]
-          : [238, 75, 43, 255],
+            ? [218, 112, 214, 255]
+            : f.properties.DIAMETER < 25
+              ? [93, 63, 211, 255]
+              : f.properties.DIAMETER < 31
+                ? [191, 64, 191, 255]
+                : [238, 75, 43, 255],
       getFillColor: [140, 170, 180],
       getLineWidth: (f: any) =>
         f.properties.DIAMETER < 7
           ? 1
           : f.properties.DIAMETER < 11
-          ? 3
-          : f.properties.DIAMETER < 17
-          ? 5
-          : f.properties.DIAMETER < 25
-          ? 7
-          : f.properties.DIAMETER < 31
-          ? 9
-          : 11,
+            ? 3
+            : f.properties.DIAMETER < 17
+              ? 5
+              : f.properties.DIAMETER < 25
+                ? 7
+                : f.properties.DIAMETER < 31
+                  ? 9
+                  : 11,
 
       lineWidthMinPixels: 1,
       pickable: true,
@@ -223,26 +223,26 @@ function App() {
         f.properties.DIAMETER < 11
           ? [0, 163, 108, 255]
           : f.properties.DIAMETER < 17
-          ? [218, 112, 214, 255]
-          : f.properties.DIAMETER < 25
-          ? [93, 63, 211, 255]
-          : f.properties.DIAMETER < 31
-          ? [191, 64, 191, 255]
-          : [238, 75, 43, 255],
+            ? [218, 112, 214, 255]
+            : f.properties.DIAMETER < 25
+              ? [93, 63, 211, 255]
+              : f.properties.DIAMETER < 31
+                ? [191, 64, 191, 255]
+                : [238, 75, 43, 255],
 
       getFillColor: [140, 170, 180],
       getLineWidth: (f: any) =>
         f.properties.DIAMETER < 7
           ? 1
           : f.properties.DIAMETER < 11
-          ? 3
-          : f.properties.DIAMETER < 17
-          ? 5
-          : f.properties.DIAMETER < 25
-          ? 7
-          : f.properties.DIAMETER < 31
-          ? 9
-          : 11,
+            ? 3
+            : f.properties.DIAMETER < 17
+              ? 5
+              : f.properties.DIAMETER < 25
+                ? 7
+                : f.properties.DIAMETER < 31
+                  ? 9
+                  : 11,
 
       lineWidthMinPixels: 1,
       pickable: true,
@@ -259,21 +259,21 @@ function App() {
         f.properties.DIAMETER < 10
           ? [128, 0, 32, 255]
           : f.properties.DIAMETER < 20
-          ? [233, 116, 81, 255]
-          : [255, 195, 0, 255],
+            ? [233, 116, 81, 255]
+            : [255, 195, 0, 255],
       getFillColor: [140, 170, 180],
       getLineWidth: (f: any) =>
         f.properties.DIAMETER < 7
           ? 1
           : f.properties.DIAMETER < 11
-          ? 3
-          : f.properties.DIAMETER < 17
-          ? 4
-          : f.properties.DIAMETER < 25
-          ? 5
-          : f.properties.DIAMETER < 31
-          ? 6
-          : 7,
+            ? 3
+            : f.properties.DIAMETER < 17
+              ? 4
+              : f.properties.DIAMETER < 25
+                ? 5
+                : f.properties.DIAMETER < 31
+                  ? 6
+                  : 7,
 
       lineWidthMinPixels: 1,
       pickable: true,
@@ -327,18 +327,18 @@ function App() {
 
   function createTodo() {
     client.models.Todo.create({
-      
+
       date: date,
-     
+
       lat: lat,
       long: lng,
-      
+
     });
-    
+
     setDate("");
     setLat(0);
     setLng(0);
-    
+
   }
 
 
@@ -419,37 +419,37 @@ function App() {
   }
 
   function onClick(info: PickingInfo) {
-     //const safeInfo=info|| [];
-     const f = info.coordinate as [number, number];
-     setLng(f[0]);
-     setLat(f[1]);
- 
-     const d = info.object as DataT;
-     if (d) {
-       setClickInfo(d);
-       //console.log(clickInfo);
-       console.log(showPopup);
-       return {
-         html: `<div>${d.properties.date}</div>
+    //const safeInfo=info|| [];
+    const f = info.coordinate as [number, number];
+    setLng(f[0]);
+    setLat(f[1]);
+
+    const d = info.object as DataT;
+    if (d) {
+      setClickInfo(d);
+      //console.log(clickInfo);
+      console.log(showPopup);
+      return {
+        html: `<div>${d.properties.date}</div>
          
          <div>${d.properties.person}</div>`,
-         style: {
-           backgroundColor: "#AFE1AF",
-           color: "#000",
-           padding: "5px",
-           borderRadius: "3px",
-           boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
-         },
-       };
-     }
- 
-     return null;
+        style: {
+          backgroundColor: "#AFE1AF",
+          color: "#000",
+          padding: "5px",
+          borderRadius: "3px",
+          boxShadow: "0 2px 4px rgba(0, 0, 0, 0.2)",
+        },
+      };
+    }
+
+    return null;
 
   }
 
   return (
     <main>
-      <h1>Washington Park Project Complaint Data</h1>
+      <h1>Washington Park Project History Data</h1>
       <Divider orientation="horizontal" />
       <br />
 
@@ -467,7 +467,7 @@ function App() {
               "https://washington-2-map-fixed.d2qs7f7sc8f3m1.amplifyapp.com"
             )
           }
-          //onClick={() => getPlacesData()}
+        //onClick={() => getPlacesData()}
         >
           Map
         </Button>
@@ -515,7 +515,7 @@ function App() {
                     layers={layers}
                     getTooltip={getTooltip}
                     onClick={onClick}
-  
+
                   />
                   <Marker latitude={lat} longitude={lng} />
                   {clickInfo && (
@@ -581,34 +581,29 @@ function App() {
                   height={"2400px"}
                   maxHeight={"2400px"}
                   maxWidth="2400px"
+
                 >
                   <ThemeProvider theme={theme} colorMode="light">
                     <Table caption="" highlightOnHover={false}>
-                      <TableHead>
+                    <TableHead>
                         <TableRow>
-                          
                           <TableCell as="th">Date</TableCell>
-                          
                           <TableCell as="th">Latitude</TableCell>
                           <TableCell as="th">Longitude</TableCell>
-                          
                         </TableRow>
-                      </TableHead>
-                      <TableBody>
+                        <TableBody>
                         {todos.map((todo) => (
                           <TableRow
                             onClick={() => deleteTodo(todo.id)}
                             key={todo.id}
                           >
-                            
                             <TableCell>{todo.date}</TableCell>
-                            
                             <TableCell>{todo.lat}</TableCell>
                             <TableCell>{todo.long}</TableCell>
-                            
                           </TableRow>
                         ))}
-                      </TableBody>
+                        </TableBody>
+                      </TableHead>
                     </Table>
                   </ThemeProvider>
                 </ScrollView>
