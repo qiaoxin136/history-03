@@ -611,10 +611,10 @@ function App() {
                   // maxWidth="100%"
                   padding="1rem"
                   // width="100%"
-                  width="1000px"
+                  width="700px"
                   height={"2400px"}
                   maxHeight={"2400px"}
-                  maxWidth="1000px"
+                  maxWidth="700px"
 
                 >
                   <ThemeProvider theme={theme} colorMode="light">
