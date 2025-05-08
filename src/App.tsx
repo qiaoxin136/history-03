@@ -452,9 +452,8 @@ function App() {
       //console.log(clickInfo);
       console.log(showPopup);
       return {
-        html: `<div>${d.properties.date}</div>
-         
-         <div>${d.properties.type}</div>`,
+        html: `<div>${d.properties.date}</div></br>
+         <div>${d.properties.type}</div></br>`,
         style: {
           backgroundColor: "#AFE1AF",
           color: "#000",
@@ -507,8 +506,10 @@ function App() {
         />
         <SelectField
           label="Select an option"
+          labelHidden={true}
           value={type}
           onChange={handleSelectChange}
+          width="100%"
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
@@ -516,8 +517,8 @@ function App() {
             </option>
           ))}
         </SelectField>
-        <Input type="number" value={lat} width="100%" />
-        <Input type="number" value={lng} width="100%" />
+        <Input type="number" value={lat}  />
+        <Input type="number" value={lng} />
       </Flex>
       <Divider orientation="horizontal" />
       <br />
