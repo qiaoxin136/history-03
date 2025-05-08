@@ -34,7 +34,7 @@ import {
   Divider,
   ScrollView,
   Tabs,
-  SelectField,
+  SelectField, 
   CheckboxField,
   // TextField,
 } from "@aws-amplify/ui-react";
@@ -93,6 +93,11 @@ type DataT = {
   };
 };
 
+type SelectOption = {
+  value: string;
+  label: string;
+};
+
 const AIR_PORTS =
   "https://5u4m070ki1.execute-api.us-east-1.amazonaws.com/Test/getData";
 
@@ -116,7 +121,7 @@ function App() {
 
   const [date, setDate] = useState("");
   //const [report, setReport] = useState("");
-  const [type, setType]=useState("water");
+  const [type, setType] = useState<string>("water");
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
 
@@ -125,6 +130,12 @@ function App() {
   const [clickInfo, setClickInfo] = useState<DataT>();
   const [showPopup, setShowPopup] = useState<boolean>(true);
   const [checked, setChecked] = useState<boolean>(false);
+
+  const options: SelectOption[] = [
+    { value: 'water', label: 'Water' },
+    { value: 'wastewater', label: 'Wastewater' },
+    { value: 'stormwater', label: 'Stormwater' },
+  ];
 
 
   const layers = [
@@ -316,6 +327,11 @@ function App() {
     setDate(e.target.value);
   };
 
+  const handleSelectChange=(event: React.ChangeEvent<HTMLSelectElement>)=>{
+    const value = event.target.value;
+    setType(value);
+  }
+
 
 
   useEffect(() => {
@@ -481,17 +497,17 @@ function App() {
           onChange={handleDate}
           width="150%"
         />
-        <select
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-       
-        
-            
+        <SelectField
+          label="Select an option"
+          value={type}
+          onChange={handleSelectChange}
         >
-          <option value="water">Water</option>
-          <option value="wastewater">Wastewater</option>
-          <option value="stormwater">Stormwater</option>
-        </select>
+          {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+        </SelectField>
         <Input type="number" value={lat} width="100%" />
         <Input type="number" value={lng} width="100%" />
       </Flex>
