@@ -34,7 +34,7 @@ import {
   Divider,
   ScrollView,
   Tabs,
-  SelectField, 
+  SelectField,
   CheckboxField,
   // TextField,
 } from "@aws-amplify/ui-react";
@@ -163,6 +163,12 @@ function App() {
       iconSizeMinPixels: 6,
       pointRadiusMinPixels: 2,
       pointRadiusScale: 9,
+      getFillColor: (d: any) =>
+        d.properties.type === "water"
+          ? [243, 58, 106, 255]
+          : d.properties.type === "wastewater"
+            ? [159, 43, 104, 255]
+            : [218, 112, 214, 255],
       // getPointRadius: (f) => 11 - f.properties.scalerank,
       //getFillColor: (d:any)=>(d.properties.status==="true" ?[220, 20, 60, 255]:[34, 35,25,255]),
       // Interactive props
@@ -327,7 +333,7 @@ function App() {
     setDate(e.target.value);
   };
 
-  const handleSelectChange=(event: React.ChangeEvent<HTMLSelectElement>)=>{
+  const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     console.log(value);
     setType(value);
@@ -345,7 +351,7 @@ function App() {
     client.models.Todo.create({
 
       date: date,
-      type: type, 
+      type: type,
       lat: lat,
       long: lng,
 
@@ -505,10 +511,10 @@ function App() {
           onChange={handleSelectChange}
         >
           {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
         </SelectField>
         <Input type="number" value={lat} width="100%" />
         <Input type="number" value={lng} width="100%" />
