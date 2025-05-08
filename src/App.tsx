@@ -121,7 +121,7 @@ function App() {
 
   const [date, setDate] = useState("");
   //const [report, setReport] = useState("");
-  const [type1, setType1] = useState<string>("water");
+  const [type, setType] = useState<string>("water");
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
 
@@ -330,7 +330,7 @@ function App() {
   const handleSelectChange=(event: React.ChangeEvent<HTMLSelectElement>)=>{
     const value = event.target.value;
     console.log(value);
-    setType1(value);
+    setType(value);
   }
 
 
@@ -345,14 +345,14 @@ function App() {
     client.models.Todo.create({
 
       date: date,
-      type: type1, 
+      type: type, 
       lat: lat,
       long: lng,
 
     });
 
     setDate("");
-    setType1(type1)
+    setType(type)
     setLat(0);
     setLng(0);
 
@@ -371,11 +371,11 @@ function App() {
     const d = info.object as DataT;
     if (d) {
       // console.log(info);
-      if (info.layer?.id === "complaint") {
+      if (info.layer?.id === "history") {
         return {
-          html: `<u>Complaint</u> <br>
-          <div>${d.properties.date}</div>     
-        <div>resolved: ${d.properties.type}</div>`,
+          html: `<u>History</u> <br>
+          <div>Date: ${d.properties.date}</div>     
+        <div>Type: ${d.properties.type}</div>`,
           style: {
             backgroundColor: "#AFE1AF",
             color: "#000",
@@ -501,7 +501,7 @@ function App() {
         />
         <SelectField
           label="Select an option"
-          value={type1}
+          value={type}
           onChange={handleSelectChange}
         >
           {options.map((option) => (
