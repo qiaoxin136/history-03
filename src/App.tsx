@@ -34,7 +34,7 @@ import {
   Divider,
   ScrollView,
   Tabs,
-
+  SelectField,
   CheckboxField,
   // TextField,
 } from "@aws-amplify/ui-react";
@@ -87,12 +87,8 @@ type DataT = {
     coordinates: [number, number, number];
   };
   properties: {
-    person: string;
-
-    description: string;
+    type: string;
     date: string;
-    report: string;
-    status: string;
     id: string;
   };
 };
@@ -120,6 +116,7 @@ function App() {
 
   const [date, setDate] = useState("");
   //const [report, setReport] = useState("");
+  const [type, setType]=useState("water");
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
 
@@ -319,6 +316,8 @@ function App() {
     setDate(e.target.value);
   };
 
+
+
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
@@ -357,9 +356,8 @@ function App() {
       if (info.layer?.id === "complaint") {
         return {
           html: `<u>Complaint</u> <br>
-          <div>${d.properties.date}</div>
-        <div>${d.properties.person}</div>
-        <div>resolved: ${d.properties.status}</div>`,
+          <div>${d.properties.date}</div>     
+        <div>resolved: ${d.properties.type}</div>`,
           style: {
             backgroundColor: "#AFE1AF",
             color: "#000",
@@ -432,7 +430,7 @@ function App() {
       return {
         html: `<div>${d.properties.date}</div>
          
-         <div>${d.properties.person}</div>`,
+         <div>${d.properties.type}</div>`,
         style: {
           backgroundColor: "#AFE1AF",
           color: "#000",
@@ -483,8 +481,19 @@ function App() {
           onChange={handleDate}
           width="150%"
         />
-        <Input type="number" value={lat} width="150%" />
-        <Input type="number" value={lng} width="150%" />
+        <select
+            value={type}
+            onChange={(e) => setType(e.target.value)}
+       
+        
+            
+        >
+          <option value="water">Water</option>
+          <option value="wastewater">Wastewater</option>
+          <option value="stormwater">Stormwater</option>
+        </select>
+        <Input type="number" value={lat} width="100%" />
+        <Input type="number" value={lng} width="100%" />
       </Flex>
       <Divider orientation="horizontal" />
       <br />
@@ -526,7 +535,7 @@ function App() {
                       anchor="bottom"
                       onClose={() => setShowPopup(false)}
                     >
-                      {clickInfo.properties.person} <br />
+                      {clickInfo.properties.date} <br />
                       <Button
                         onClick={() => {
                           deleteTodo(clickInfo.properties.id);
@@ -585,23 +594,25 @@ function App() {
                 >
                   <ThemeProvider theme={theme} colorMode="light">
                     <Table caption="" highlightOnHover={false}>
-                    <TableHead>
+                      <TableHead>
                         <TableRow>
                           <TableCell as="th">Date</TableCell>
+                          <TableCell as="th">Type</TableCell>
                           <TableCell as="th">Latitude</TableCell>
                           <TableCell as="th">Longitude</TableCell>
                         </TableRow>
                         <TableBody>
-                        {todos.map((todo) => (
-                          <TableRow
-                            onClick={() => deleteTodo(todo.id)}
-                            key={todo.id}
-                          >
-                            <TableCell>{todo.date}</TableCell>
-                            <TableCell>{todo.lat}</TableCell>
-                            <TableCell>{todo.long}</TableCell>
-                          </TableRow>
-                        ))}
+                          {todos.map((todo) => (
+                            <TableRow
+                              onClick={() => deleteTodo(todo.id)}
+                              key={todo.id}
+                            >
+                              <TableCell>{todo.date}</TableCell>
+                              <TableCell>{todo.type}</TableCell>
+                              <TableCell>{todo.lat}</TableCell>
+                              <TableCell>{todo.long}</TableCell>
+                            </TableRow>
+                          ))}
                         </TableBody>
                       </TableHead>
                     </Table>
