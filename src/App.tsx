@@ -121,7 +121,7 @@ function App() {
 
   const [date, setDate] = useState("");
   //const [report, setReport] = useState("");
-  const [type, setType] = useState<string>("water");
+  const [type1, setType1] = useState<string>("water");
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
 
@@ -329,7 +329,8 @@ function App() {
 
   const handleSelectChange=(event: React.ChangeEvent<HTMLSelectElement>)=>{
     const value = event.target.value;
-    setType(value);
+    console.log(value);
+    setType1(value);
   }
 
 
@@ -344,13 +345,14 @@ function App() {
     client.models.Todo.create({
 
       date: date,
-
+      type: type1, 
       lat: lat,
       long: lng,
 
     });
 
     setDate("");
+    setType1(type1)
     setLat(0);
     setLng(0);
 
@@ -368,7 +370,7 @@ function App() {
   function getTooltip(info: PickingInfo) {
     const d = info.object as DataT;
     if (d) {
-      console.log(info);
+      // console.log(info);
       if (info.layer?.id === "complaint") {
         return {
           html: `<u>Complaint</u> <br>
@@ -499,7 +501,7 @@ function App() {
         />
         <SelectField
           label="Select an option"
-          value={type}
+          value={type1}
           onChange={handleSelectChange}
         >
           {options.map((option) => (
