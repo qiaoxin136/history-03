@@ -621,10 +621,10 @@ function App() {
                     <Table caption="" highlightOnHover={false}>
                       <TableHead>
                         <TableRow>
-                          <TableCell as="th">Date</TableCell>
-                          <TableCell as="th">Type</TableCell>
-                          <TableCell as="th">Latitude</TableCell>
-                          <TableCell as="th">Longitude</TableCell>
+                          <TableCell as="th" style={{ width: '10%' }}>Date</TableCell>
+                          <TableCell as="th"style={{ width: '30%' }}>Type</TableCell>
+                          <TableCell as="th" style={{ width: '30%' }}>Latitude</TableCell>
+                          <TableCell as="th"style={{ width: '30%' }}>Longitude</TableCell>
                         </TableRow>
                         <TableBody>
                           {todos.map((todo) => (
