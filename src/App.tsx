@@ -1,4 +1,4 @@
-import { useEffect, useState, ChangeEvent } from "react";
+import { useEffect, useState, ChangeEvent, /* useRef */ } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { generateClient } from "aws-amplify/data";
@@ -14,6 +14,7 @@ import {
   Popup,
   Marker,
   NavigationControl,
+  GeolocateControl,
 } from "react-map-gl";
 
 import maplibregl from "maplibre-gl";
@@ -117,6 +118,7 @@ function DeckGLOverlay(
 
 function App() {
   const { signOut } = useAuthenticator();
+  //const geoControlRef = useRef<maplibregl.GeolocateControl>();
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
 
   const [date, setDate] = useState("");
@@ -162,7 +164,7 @@ function App() {
       iconSizeScale: 3,
       iconSizeMinPixels: 6,
       pointRadiusMinPixels: 2,
-      pointRadiusScale: 9,
+      pointRadiusScale: 5,
       getFillColor: (d: any) =>
         d.properties.type === "water"
           ? [243, 58, 106, 255]
@@ -572,6 +574,7 @@ function App() {
                     </Popup>
                   )}
                   <NavigationControl position="top-right" />
+                  <GeolocateControl position="top-right" />
                   {/* {showPopup && (
                     <Popup
                       longitude={-80.22}
