@@ -102,8 +102,8 @@ type SelectOption = {
 const AIR_PORTS =
   "https://5u4m070ki1.execute-api.us-east-1.amazonaws.com/Test/getData";
 
-const MAP_STYLE =
-  "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
+const MAP_STYLE ="https://api.maptiler.com/maps/4dc46e7c-616b-4254-878e-ce7b47876939/style.json?key=tJMfy9mXElbPrO8efC90";
+ // "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 
 function DeckGLOverlay(
   props: MapboxOverlayProps & {
