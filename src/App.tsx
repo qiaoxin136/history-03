@@ -611,10 +611,10 @@ function App() {
                   // maxWidth="100%"
                   padding="1rem"
                   // width="100%"
-                  width="700px"
-                  height={"2400px"}
-                  maxHeight={"2400px"}
-                  maxWidth="700px"
+                  // width="1000px"
+                  // height={"2400px"}
+                  // maxHeight={"2400px"}
+                  // maxWidth="1000px"
 
                 >
                   <ThemeProvider theme={theme} colorMode="light">
@@ -632,10 +632,10 @@ function App() {
                               onClick={() => deleteTodo(todo.id)}
                               key={todo.id}
                             >
-                              <TableCell>{todo.date}</TableCell>
-                              <TableCell>{todo.type}</TableCell>
-                              <TableCell>{todo.lat}</TableCell>
-                              <TableCell>{todo.long}</TableCell>
+                              <TableCell width="10%">{todo.date}</TableCell>
+                              <TableCell width="30%">{todo.type}</TableCell>
+                              <TableCell width="30%">{todo.lat}</TableCell>
+                              <TableCell width="30%">{todo.long}</TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
