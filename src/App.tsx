@@ -517,7 +517,7 @@ function App() {
             </option>
           ))}
         </SelectField>
-        <Input type="number" value={lat}  />
+        <Input type="number" value={lat} />
         <Input type="number" value={lng} />
       </Flex>
       <Divider orientation="horizontal" />
@@ -610,21 +610,26 @@ function App() {
                   // height="45rem"
                   // maxWidth="100%"
                   padding="1rem"
-                  // width="100%"
-                  // width="1000px"
-                  // height={"2400px"}
-                  // maxHeight={"2400px"}
-                  // maxWidth="1000px"
+                // width="100%"
+                // width="1000px"
+                // height={"2400px"}
+                // maxHeight={"2400px"}
+                // maxWidth="1000px"
 
                 >
                   <ThemeProvider theme={theme} colorMode="light">
-                    <Table caption="" highlightOnHover={false}>
+                    <Table caption="" highlightOnHover={false} variation="striped"
+                      style={{
+                        tableLayout: 'fixed',
+                        width: '100%',
+                        fontFamily: 'Arial, sans-serif',
+                      }}>
                       <TableHead>
                         <TableRow>
                           <TableCell as="th" style={{ width: '10%' }}>Date</TableCell>
-                          <TableCell as="th"style={{ width: '30%' }}>Type</TableCell>
+                          <TableCell as="th" style={{ width: '30%' }}>Type</TableCell>
                           <TableCell as="th" style={{ width: '30%' }}>Latitude</TableCell>
-                          <TableCell as="th"style={{ width: '30%' }}>Longitude</TableCell>
+                          <TableCell as="th" style={{ width: '30%' }}>Longitude</TableCell>
                         </TableRow>
                         <TableBody>
                           {todos.map((todo) => (
