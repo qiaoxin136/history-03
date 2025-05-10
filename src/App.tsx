@@ -407,8 +407,8 @@ function App() {
       if (info.layer?.id === "history") {
         return {
           html: `<u>History</u> <br>
-          <div>Date: ${d.properties.date}</div>  <br> 
-          <div>Time: ${d.properties.time}</div>  <br> 
+          <div>Date: ${d.properties.date}</div>
+          <div>Time: ${d.properties.time}</div>
         <div>Type: ${d.properties.type}</div>`,
           style: {
             backgroundColor: "#AFE1AF",
