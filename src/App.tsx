@@ -173,6 +173,9 @@ function App() {
           : d.properties.type === "wastewater"
             ? [159, 43, 104, 255]
             : [218, 112, 214, 255],
+      getText: (d: any)=>d.properties.date, 
+      getTextColor: [0,0,0,255], 
+      getTextSize: 32, 
       // getPointRadius: (f) => 11 - f.properties.scalerank,
       //getFillColor: (d:any)=>(d.properties.status==="true" ?[220, 20, 60, 255]:[34, 35,25,255]),
       // Interactive props
@@ -390,7 +393,8 @@ function App() {
       if (info.layer?.id === "history") {
         return {
           html: `<u>History</u> <br>
-          <div>Date: ${d.properties.date}</div>     
+          <div>Date: ${d.properties.date}</div>  <br> 
+          <div>Time: ${d.properties.time}</div>  <br> 
         <div>Type: ${d.properties.type}</div>`,
           style: {
             backgroundColor: "#AFE1AF",
