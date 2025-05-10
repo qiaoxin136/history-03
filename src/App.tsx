@@ -44,6 +44,7 @@ import "@aws-amplify/ui-react/styles.css";
 import { GeoJsonLayer } from "@deck.gl/layers/typed";
 //import { IconLayer } from "@deck.gl/layers/typed";
 import { MVTLayer } from "@deck.gl/geo-layers/typed";
+import { TextLayer } from "@deck.gl/layers/typed";
 
 
 const theme: Theme = {
@@ -182,6 +183,19 @@ function App() {
       pickable: true,
       autoHighlight: true,
     }),
+
+    new TextLayer({
+      id: 'text-layer',
+      data: AIR_PORTS,
+      pickable: false,
+      getPosition: d => d.geometry.coordinates,
+      getText: d => d.data,
+      getSize: 16,
+      getAngle: 0,
+      getTextAnchor: 'middle',
+      getAlignmentBaseline: 'center',
+      getColor: [255, 255, 255]
+    }), 
 
     new MVTLayer({
       id: "lateral",
