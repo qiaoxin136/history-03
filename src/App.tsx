@@ -102,8 +102,8 @@ type SelectOption = {
 const AIR_PORTS =
   "https://5u4m070ki1.execute-api.us-east-1.amazonaws.com/Test/getData";
 
-const MAP_STYLE ="https://api.maptiler.com/maps/4dc46e7c-616b-4254-878e-ce7b47876939/style.json?key=tJMfy9mXElbPrO8efC90";
- // "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
+const MAP_STYLE = "https://api.maptiler.com/maps/4dc46e7c-616b-4254-878e-ce7b47876939/style.json?key=tJMfy9mXElbPrO8efC90";
+// "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json";
 
 function DeckGLOverlay(
   props: MapboxOverlayProps & {
@@ -574,7 +574,10 @@ function App() {
                     </Popup>
                   )}
                   <NavigationControl position="top-right" />
-                  <GeolocateControl position="top-right" />
+                  <GeolocateControl position="top-right" positionOptions={{ enableHighAccuracy: true }}
+                    trackUserLocation={true}
+                    // Draw an arrow next to the location dot to indicate which direction the device is heading.
+                    showUserHeading={true} />
                   {/* {showPopup && (
                     <Popup
                       longitude={-80.22}
