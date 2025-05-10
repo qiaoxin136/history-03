@@ -90,6 +90,7 @@ type DataT = {
   properties: {
     type: string;
     date: string;
+    time: string;
     id: string;
   };
 };
@@ -122,6 +123,7 @@ function App() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
 
   const [date, setDate] = useState("");
+  const [time, setTime]=useState("");
   //const [report, setReport] = useState("");
   const [type, setType] = useState<string>("water");
   const [lat, setLat] = useState(0);
@@ -335,6 +337,10 @@ function App() {
     setDate(e.target.value);
   };
 
+  const handleTime = (e: ChangeEvent<HTMLInputElement>) => {
+    setTime(e.target.value);
+  };
+
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     console.log(value);
@@ -353,6 +359,7 @@ function App() {
     client.models.Todo.create({
 
       date: date,
+      time: time, 
       type: type,
       lat: lat,
       long: lng,
@@ -360,7 +367,8 @@ function App() {
     });
 
     setDate("");
-    setType(type)
+    setTime("");
+    setType(type);
     setLat(0);
     setLng(0);
 
@@ -455,6 +463,7 @@ function App() {
       console.log(showPopup);
       return {
         html: `<div>${d.properties.date}</div></br>
+          <div>${d.properties.time}</div></br>
          <div>${d.properties.type}</div></br>`,
         style: {
           backgroundColor: "#AFE1AF",
@@ -504,6 +513,13 @@ function App() {
           value={date}
           placeholder="date"
           onChange={handleDate}
+          width="150%"
+        />
+         <input
+          type="time"
+          value={time}
+          placeholder="time"
+          onChange={handleTime}
           width="150%"
         />
         <SelectField
@@ -632,10 +648,11 @@ function App() {
                       }}>
                       <TableHead>
                         <TableRow>
-                          <TableCell as="th" style={{ width: '10%' }}>Date</TableCell>
-                          <TableCell as="th" style={{ width: '30%' }}>Type</TableCell>
-                          <TableCell as="th" style={{ width: '30%' }}>Latitude</TableCell>
-                          <TableCell as="th" style={{ width: '30%' }}>Longitude</TableCell>
+                          <TableCell as="th" style={{ width: '20%' }}>Date</TableCell>
+                          <TableCell as="th" style={{ width: '20%' }}>Time</TableCell>
+                          <TableCell as="th" style={{ width: '20%' }}>Type</TableCell>
+                          <TableCell as="th" style={{ width: '20%' }}>Latitude</TableCell>
+                          <TableCell as="th" style={{ width: '20%' }}>Longitude</TableCell>
                         </TableRow>
                         <TableBody>
                           {todos.map((todo) => (
@@ -643,10 +660,11 @@ function App() {
                               onClick={() => deleteTodo(todo.id)}
                               key={todo.id}
                             >
-                              <TableCell width="10%">{todo.date}</TableCell>
-                              <TableCell width="30%">{todo.type}</TableCell>
-                              <TableCell width="30%">{todo.lat}</TableCell>
-                              <TableCell width="30%">{todo.long}</TableCell>
+                              <TableCell width="20%">{todo.date}</TableCell>
+                              <TableCell width="20%">{todo.time}</TableCell>
+                              <TableCell width="20%">{todo.type}</TableCell>
+                              <TableCell width="20%">{todo.lat}</TableCell>
+                              <TableCell width="20%">{todo.long}</TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
