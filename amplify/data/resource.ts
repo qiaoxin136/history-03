@@ -11,6 +11,7 @@ const schema = a.schema({
     .model({
       content: a.string(),
       date: a.date(), 
+      time: a.time(), 
       type: a.string(), 
       lat: a.float(),
       long: a.float(),
