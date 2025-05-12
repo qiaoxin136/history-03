@@ -170,10 +170,10 @@ function App() {
       pointRadiusScale: 5,
       getFillColor: (d: any) =>
         d.properties.type === "water"
-          ? [243, 58, 106, 255]
+          ? [0, 0, 139, 255]
           : d.properties.type === "wastewater"
-            ? [159, 43, 104, 255]
-            : [218, 112, 214, 255],
+            ? [9, 121, 105, 255]
+            : [204, 85, 0, 255],
       getText: (d: any)=>d.properties.date, 
       getTextColor: [0,0,0,255], 
       getTextSize: 32, 
@@ -499,7 +499,7 @@ function App() {
 
   return (
     <main>
-      <h1>Washington Park Project History Data</h1>
+      <h1>Lift Station A-9 Force Main Replacement</h1>
       <Divider orientation="horizontal" />
       <br />
 
