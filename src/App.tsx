@@ -89,6 +89,7 @@ type DataT = {
     coordinates: [number, number, number];
   };
   properties: {
+    track: number;
     type: string;
     status: string;
     date: string;
@@ -127,6 +128,7 @@ function App() {
   const [date, setDate] = useState("");
   const [time, setTime]=useState("");
   //const [report, setReport] = useState("");
+  const [track, setTrack] = useState<number>();
   const [type, setType] = useState<string>("water");
   const [status, setStatus]=useState<string>("start");
   const [lat, setLat] = useState(0);
@@ -365,6 +367,10 @@ function App() {
     setTime(e.target.value);
   };
 
+  const handleTrack = (e: ChangeEvent<HTMLInputElement>) => {
+   setTrack(parseInt(e.target.value));
+  };
+
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     console.log(value);
@@ -388,6 +394,7 @@ function App() {
 
       date: date,
       time: time, 
+       track: track,
       type: type,
       status: status,
       lat: lat,
@@ -397,6 +404,7 @@ function App() {
 
     setDate("");
     setTime("");
+    setTrack(track);
     setType(type);
     setStatus(status);
     setLat(0);
@@ -422,6 +430,7 @@ function App() {
           html: `<u>History</u> <br>
           <div>Date: ${d.properties.date}</div>
           <div>Time: ${d.properties.time}</div>
+           <div>track: ${d.properties.track}</div>
         <div>Type: ${d.properties.type}</div>`,
           style: {
             backgroundColor: "#AFE1AF",
@@ -544,21 +553,28 @@ function App() {
           value={date}
           placeholder="date"
           onChange={handleDate}
-          width="150%"
+          //width="150%"
         />
          <input
           type="time"
           value={time}
           placeholder="time"
           onChange={handleTime}
-          width="150%"
+          //width="150%"
+        />
+         <input
+          type="number"
+          value={track}
+          placeholder="track"
+          onChange={handleTrack}
+          //width="150%"
         />
         <SelectField
           label="Select an option"
           labelHidden={true}
           value={type}
           onChange={handleSelectChange}
-          width="100%"
+          //width="100%"
         >
           {options.map((option) => (
             <option key={option.value} value={option.value}>
@@ -623,6 +639,8 @@ function App() {
                       onClose={() => setShowPopup(false)}
                     >
                       {clickInfo.properties.date} <br />
+                      {clickInfo.properties.track} <br />
+                      {clickInfo.properties.type} <br />
                       <Button
                         onClick={() => {
                           deleteTodo(clickInfo.properties.id);
@@ -692,12 +710,13 @@ function App() {
                       }}>
                       <TableHead>
                         <TableRow>
-                          <TableCell as="th" style={{ width: '15%' }}>Date</TableCell>
+                           <TableCell as="th" style={{ width: '15%' }}>Date</TableCell>
                           <TableCell as="th" style={{ width: '15%' }}>Time</TableCell>
+                          <TableCell as="th" style={{ width: '10%' }}>Track</TableCell>
                           <TableCell as="th" style={{ width: '15%' }}>Type</TableCell>
                            <TableCell as="th" style={{ width: '15%' }}>Status</TableCell>
-                          <TableCell as="th" style={{ width: '20%' }}>Latitude</TableCell>
-                          <TableCell as="th" style={{ width: '20%' }}>Longitude</TableCell>
+                          <TableCell as="th" style={{ width: '15%' }}>Latitude</TableCell>
+                          <TableCell as="th" style={{ width: '15%' }}>Longitude</TableCell>
                         </TableRow>
                         <TableBody>
                           {todos.map((todo) => (
@@ -707,10 +726,11 @@ function App() {
                             >
                              <TableCell width="15%">{todo.date}</TableCell>
                               <TableCell width="15%">{todo.time}</TableCell>
+                              <TableCell width="10%">{todo.track}</TableCell>
                               <TableCell width="15%">{todo.type}</TableCell>
                               <TableCell width="15%">{todo.status}</TableCell>
-                              <TableCell width="20%">{todo.lat}</TableCell>
-                              <TableCell width="20%">{todo.long}</TableCell>
+                              <TableCell width="15%">{todo.lat}</TableCell>
+                              <TableCell width="15%">{todo.long}</TableCell>
                             </TableRow>
                           ))}
                         </TableBody>
