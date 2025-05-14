@@ -13,6 +13,7 @@ const schema = a.schema({
       date: a.date(), 
       time: a.time(), 
       type: a.string(), 
+      status: a.string(), 
       lat: a.float(),
       long: a.float(),
     })
