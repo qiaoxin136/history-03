@@ -90,6 +90,7 @@ type DataT = {
   };
   properties: {
     type: string;
+    status: string;
     date: string;
     time: string;
     id: string;
@@ -127,6 +128,7 @@ function App() {
   const [time, setTime]=useState("");
   //const [report, setReport] = useState("");
   const [type, setType] = useState<string>("water");
+  const [status, setStatus]=useState<string>("start");
   const [lat, setLat] = useState(0);
   const [lng, setLng] = useState(0);
 
@@ -142,6 +144,11 @@ function App() {
     { value: 'stormwater', label: 'Stormwater' },
   ];
 
+  const options2: SelectOption[] = [
+    { value: 'start', label: 'Start' },
+    { value: 'continue', label: 'Continue' },
+    { value: 'end', label: 'End' },
+  ];
 
   const layers = [
 
@@ -364,7 +371,11 @@ function App() {
     setType(value);
   }
 
-
+  const handleSelectChange2 = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = event.target.value;
+    console.log(value);
+    setStatus(value);
+  }
 
   useEffect(() => {
     client.models.Todo.observeQuery().subscribe({
@@ -378,6 +389,7 @@ function App() {
       date: date,
       time: time, 
       type: type,
+      status: status,
       lat: lat,
       long: lng,
 
@@ -386,6 +398,7 @@ function App() {
     setDate("");
     setTime("");
     setType(type);
+    setStatus(status);
     setLat(0);
     setLng(0);
 
@@ -553,6 +566,19 @@ function App() {
             </option>
           ))}
         </SelectField>
+        <SelectField
+          label="Select an option"
+          labelHidden={true}
+          value={status}
+          onChange={handleSelectChange2}
+          width="100%"
+        >
+          {options2.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </SelectField>
         <Input type="number" value={lat} />
         <Input type="number" value={lng} />
       </Flex>
@@ -666,9 +692,10 @@ function App() {
                       }}>
                       <TableHead>
                         <TableRow>
-                          <TableCell as="th" style={{ width: '20%' }}>Date</TableCell>
-                          <TableCell as="th" style={{ width: '20%' }}>Time</TableCell>
-                          <TableCell as="th" style={{ width: '20%' }}>Type</TableCell>
+                          <TableCell as="th" style={{ width: '15%' }}>Date</TableCell>
+                          <TableCell as="th" style={{ width: '15%' }}>Time</TableCell>
+                          <TableCell as="th" style={{ width: '15%' }}>Type</TableCell>
+                           <TableCell as="th" style={{ width: '15%' }}>Status</TableCell>
                           <TableCell as="th" style={{ width: '20%' }}>Latitude</TableCell>
                           <TableCell as="th" style={{ width: '20%' }}>Longitude</TableCell>
                         </TableRow>
@@ -678,9 +705,10 @@ function App() {
                               onClick={() => deleteTodo(todo.id)}
                               key={todo.id}
                             >
-                              <TableCell width="20%">{todo.date}</TableCell>
-                              <TableCell width="20%">{todo.time}</TableCell>
-                              <TableCell width="20%">{todo.type}</TableCell>
+                             <TableCell width="15%">{todo.date}</TableCell>
+                              <TableCell width="15%">{todo.time}</TableCell>
+                              <TableCell width="15%">{todo.type}</TableCell>
+                              <TableCell width="15%">{todo.status}</TableCell>
                               <TableCell width="20%">{todo.lat}</TableCell>
                               <TableCell width="20%">{todo.long}</TableCell>
                             </TableRow>
