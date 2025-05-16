@@ -611,8 +611,8 @@ function App() {
               <>
                 <Map
                   initialViewState={{
-                    longitude: -80.20313322301595,
-                    latitude: 26.000381149529055,
+                    longitude: -80.22836336572045,
+                    latitude: 26.02072268488061,
                     zoom: 16,
                   }}
                   mapLib={maplibregl}
